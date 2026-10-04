@@ -15,7 +15,10 @@
 // v1 (04-oct-2026): catálogo inicial desde el menú real de la dueña.
 // Fotos recortadas de sus propios flyers (cero repeticiones entre
 // tipos de producto).
-const CATALOG_VERSION = 1;
+// v2 (04-oct-2026): Shots → 4 variedades por color (naranja, dorado,
+// verde, rojo), visibles en el flyer de la dueña. La dueña les pone
+// el nombre final en /tienda → Catálogo.
+const CATALOG_VERSION = 2;
 
 const SEED_CATALOG = {
   departments: [
@@ -39,13 +42,16 @@ const SEED_CATALOG = {
       id: "shots",
       name: "Shots",
       icon: "⚡",
-      img: "img/shot-2oz.jpg",
+      img: "img/shot-verde.jpg",
       categories: [
         {
           id: "shots-detox",
           name: "Detox",
           items: [
-            { id: "shot-2oz", img: "img/shot-2oz.jpg", name: "Shot 2 oz", price: 4.00, unit: "shot", active: true, desc: "Shot natural de 2 oz para energía y equilibrio. Compra mínima: 7 shots." }
+            { id: "shot-naranja", img: "img/shot-naranja.jpg", name: "Shot Naranja 2 oz", price: 4.00, unit: "shot", active: true, desc: "Shot natural de 2 oz. Compra mínima: 7 shots — combina tus variedades." },
+            { id: "shot-dorado", img: "img/shot-dorado.jpg", name: "Shot Dorado 2 oz", price: 4.00, unit: "shot", active: true, desc: "Shot natural de 2 oz. Compra mínima: 7 shots — combina tus variedades." },
+            { id: "shot-verde", img: "img/shot-verde.jpg", name: "Shot Verde 2 oz", price: 4.00, unit: "shot", active: true, desc: "Shot natural de 2 oz. Compra mínima: 7 shots — combina tus variedades." },
+            { id: "shot-rojo", img: "img/shot-rojo.jpg", name: "Shot Rojo 2 oz", price: 4.00, unit: "shot", active: true, desc: "Shot natural de 2 oz. Compra mínima: 7 shots — combina tus variedades." }
           ]
         }
       ]
