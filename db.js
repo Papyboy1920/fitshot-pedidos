@@ -135,6 +135,18 @@ async function init() {
       let live = null;
       try { live = JSON.parse(await kvGet("catalog")); } catch { live = null; }
       const m = mergeCatalog(live, SEED_CATALOG);
+      // v2 (04-oct-2026): reemplazo exacto del ítem semilla "shot-2oz"
+      // por las 4 variedades (shot-naranja/dorado/verde/rojo). Solo toca
+      // ese id de semilla; lo que el dueño haya creado queda intacto.
+      // (La demo se lanzó hace <1h y la dueña aún no la ha tocado.)
+      if (parseInt(v || "0", 10) < 2) {
+        for (const d of m.catalog.departments || []) {
+          for (const c of d.categories || []) {
+            c.items = (c.items || []).filter((it) => it && it.id !== "shot-2oz");
+          }
+        }
+        console.log("[fitshot] Migración v2: ítem semilla 'shot-2oz' reemplazado por 4 variedades.");
+      }
       await kvSet("catalog", JSON.stringify(m.catalog));
       await kvSet("catalog_version", String(CATALOG_VERSION));
       console.log(`[fitshot] Catálogo fusionado (v${v} → v${CATALOG_VERSION}): +${m.added} nuevos, ${m.filled} campos rellenados. Lo del dueño intacto.`);
